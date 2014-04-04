@@ -38,6 +38,13 @@ Or use the old manual upload method:
 
 Not really right now... the use and options are pretty self-explainatory. I'm sure this will change over time. ;) Use the Support tab to submit your questions or concerns please.
 
+== Screenshots ==
+
+1. Form Names as Event Categories in GA
+2. Form Names with Form Field Stats in GA
+3. Form Field Level Stats in GA
+4. Form Field Stats per Form Shown in GA
+
 == Changelog ==
 
 = 1.0 =
