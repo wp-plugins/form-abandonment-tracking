@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Form Abandonment Tracking
- * Plugin URI: http://webwizards.net/wordpress/
+ * Plugin URI: http://presswizards.com/wordpress/
  * Description: Tracks form abandonment to the form field level as Google Analytics events, including Submits.
- * Version: 1.1
- * Author: Web Wizards
- * Author URI: http://webwizards.net/wordpress/
+ * Version: 1.2
+ * Author: Press Wizards
+ * Author URI: http://presswizards.com/wordpress/
  * License: GPL2
  */
 
@@ -21,29 +21,39 @@ function form_tracker() {
       } else {
         var inputAction = this.value ? 'completed' : 'skipped';
       }
-//      console.log('Form Abandonment Tracking - Detected: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
-                if (typeof ga !== 'undefined') {
-                    ga('send', 'event', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name'));
-                    console.log('Form Abandonment Tracking - GA Universal in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
-                 }
+                // compatible with post-5.0 Yoast Universal GA code
+                if (typeof __gaTracker !== 'undefined') {
+                    __gaTracker('send', 'event', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name'));
+                //    console.log('Form Abandonment Tracking - __gaTracker Universal in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
+                }
                 //check if _gaq is set too
                 if (typeof _gaq !== 'undefined') {
                     _gaq.push(['_trackEvent', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name')]);
-                    console.log('Form Abandonment Tracking - Google Analytics in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
+                //    console.log('Form Abandonment Tracking - Google Analytics in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
+                }
+                // compatible with pre-5.1 Yoast GA code, for sites that are neglected lol
+                if (typeof ga !== 'undefined') {
+                    ga('send', 'event', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name'));
+                //    console.log('Form Abandonment Tracking - Orig Universal in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
                 }
   });
   $('form').find(':input').click(function() {
     if(this.type && this.type.toLowerCase() === 'submit') {
       inputAction = 'submitted';
-//          console.log('Form Abandonment Tracking - Submit clicked: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
-                if (typeof ga !== 'undefined') {
-                    ga('send', 'event', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name'));
-                    console.log('Form Abandonment Tracking - GA Universal in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
-                 }
+                // compatible with post-5.0 Yoast Universal GA code
+                if (typeof __gaTracker !== 'undefined') {
+                    __gaTracker('send', 'event', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name'));
+                //    console.log('Form Abandonment Tracking - __gaTracker Universal in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
+                }
                 //check if _gaq is set too
                 if (typeof _gaq !== 'undefined') {
                     _gaq.push(['_trackEvent', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name')]);
-                    console.log('Form Abandonment Tracking - Google Analytics in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
+                //    console.log('Form Abandonment Tracking - Google Analytics in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
+                }
+                // compatible with pre-5.1 Yoast GA code, for sites that are neglected lol
+                if (typeof ga !== 'undefined') {
+                    ga('send', 'event', (this.form.id || 'form-without-id'), inputAction, $(this).attr('name'));
+                //    console.log('Form Abandonment Tracking - Orig Universal in use, sent: ' + (this.form.id || 'form-without-id') + ' Label: ' + this.name + ' Action: ' + inputAction);
                 }
     }
  });

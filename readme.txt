@@ -3,7 +3,7 @@ Contributors: downtownrob
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R4SE22RQ4CB2E
 Tags: form abandonment tracking, form tracking, field level tracking, google analytics, universal analytics
 Requires at least: 2.9
-Tested up to: 4.1
+Tested up to: 4.2.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -49,6 +49,9 @@ Yes, now it does.
 4. Form Field Stats per Form Shown in GA
 
 == Changelog ==
+
+= 1.2 =
+Updated to include support for Yoast's new Universal Analytics prefix, as well as original, and commented out console log output debugging.
 
 = 1.1 =
 Updated to include support for Universal Analytics, and fix a bug in tracking submits.
